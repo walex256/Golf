@@ -4,8 +4,8 @@ namespace Golf
 {
     public class Stick : MonoBehaviour
     {
-        [SerializeField] private float m_minAngelX;
-        [SerializeField] private float m_maxAngelX;
+        [SerializeField] private float m_minAngelX= 30;
+        [SerializeField] private float m_maxAngelX=-30;
         [SerializeField, Min(0)] private float m_speed;
 
         private void FixedUpdate()
@@ -14,11 +14,11 @@ namespace Golf
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                angels.x = Rotate(angels.x, m_minAngelX);
+                angels.z = Rotate(angels.z, m_minAngelX);
             }
             else
             {
-                angels.x = Rotate(angels.x, m_maxAngelX);
+                angels.z = Rotate(angels.z, m_maxAngelX);
             }
 
             transform.localEulerAngles = angels;
