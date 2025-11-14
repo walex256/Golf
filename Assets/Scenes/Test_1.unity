@@ -1525,8 +1525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.StonesSpawner
   m_prefab:
-  - {fileID: 7423126245656897977, guid: f1b252f1d7d477d4c84d4ae7a2268678, type: 3}
-  - {fileID: 1059892668220292335, guid: 6c77f6b0e7693b242ae071cd9ca57e92, type: 3}
+  - {fileID: 7207846310640476763, guid: f1b252f1d7d477d4c84d4ae7a2268678, type: 3}
+  - {fileID: -1260470203952226912, guid: 6c77f6b0e7693b242ae071cd9ca57e92, type: 3}
   m_spawnPoint: {fileID: 201945523}
 --- !u!4 &201945523
 Transform:
@@ -4380,7 +4380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &592868892
 Transform:
   m_ObjectHideFlags: 0
@@ -9963,6 +9963,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4202130902894980, guid: 6910e2407cd484a42a0c2598114751a0, type: 3}
   m_PrefabInstance: {fileID: 1242421297}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1252222023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1252222024}
+  m_Layer: 7
+  m_Name: HitPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1252222024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252222023}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.227, z: 0.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1972295545}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1257980163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14763,6 +14794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3781360141a762249ac823317923d811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.LevelController
+  m_missedCount: 0
   m_spawnRate: 2.01
   m_stonesSpawner: {fileID: 201945522}
 --- !u!4 &1927565967
@@ -15353,6 +15385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972295545}
   - component: {fileID: 1972295546}
+  - component: {fileID: 1972295547}
   m_Layer: 7
   m_Name: Stikc
   m_TagString: Untagged
@@ -15375,6 +15408,7 @@ Transform:
   m_Children:
   - {fileID: 2049948649}
   - {fileID: 592868892}
+  - {fileID: 1252222024}
   m_Father: {fileID: 2916151947902129309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1972295546
@@ -15389,9 +15423,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b283c69dc4dbf70498a6ac8459f05807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.Stick
+  m_power: 250
+  m_point: {fileID: 1252222024}
   m_minAngelX: 45
   m_maxAngelX: -50
   m_speed: 500
+--- !u!65 &1972295547
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972295544}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.18047094, y: 0.14603567, z: 0.44961223}
+  m_Center: {x: 0.0034026569, y: -1.231982, z: 0.07161029}
 --- !u!1001 &1977149303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15534,29 +15591,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2728306578926858670, guid: 58cd754c3dde1f944a2d86bd93a982bb, type: 3}
   m_PrefabInstance: {fileID: 2378654964216509336}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &2049948652
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049948648}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.040578254
-  m_Height: 1.4101634
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.4181188, z: -0.000000039739238}
 --- !u!1001 &2053064194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16162,10 +16196,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2728306578926890382, guid: 58cd754c3dde1f944a2d86bd93a982bb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2049948652}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58cd754c3dde1f944a2d86bd93a982bb, type: 3}
 --- !u!1 &2916151947839975226
 GameObject:

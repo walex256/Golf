@@ -3,14 +3,14 @@ namespace Golf
 {
     public class StonesSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject[] m_prefab;
+        [SerializeField] private Stone[] m_prefab;
 
         [SerializeField] private Transform m_spawnPoint;
 
-        public void Spawn()
+        public Stone Spawn()
         {
             var prefabs = m_prefab[Random.Range(0, m_prefab.Length)];
-            Instantiate(prefabs, m_spawnPoint.position, m_spawnPoint.rotation);
+            return Instantiate(prefabs, m_spawnPoint.position, m_spawnPoint.rotation);
         }
 
 

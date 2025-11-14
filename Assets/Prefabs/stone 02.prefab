@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7573856672736429134}
   - component: {fileID: -6584748804336200695}
   - component: {fileID: -1648076695302266490}
+  - component: {fileID: -1260470203952226912}
   m_Layer: 0
   m_Name: stone 02
   m_TagString: Untagged
@@ -153,4 +154,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionDetector
   groundLayer: 8
-  clubLayer: 7
+  StickLayer: 7
+--- !u!114 &-1260470203952226912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059892668220292335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc0931e84c09e24c933a92995e1c9a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stone
