@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Golf
@@ -14,11 +15,13 @@ namespace Golf
 
         private Vector3 m_lastPointPosition;
 
+        private bool m_isDown;
+
         private void FixedUpdate()
         {
             var angels = transform.localEulerAngles;
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (m_isDown)
             {
                 angels.z = Rotate(angels.z, m_minAngelX);
             }
@@ -33,6 +36,7 @@ namespace Golf
             m_direction = (m_point.position - m_lastPointPosition).normalized;
             m_lastPointPosition = m_point.position;
 
+            
         }
 
         private float Rotate(float angelX, float target)
@@ -42,8 +46,17 @@ namespace Golf
             
             if (collision.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                stone.GetComponent<Rigidbody>().AddForce(m_power * m_direction, ForceMode.Impulse);
+                stone.AddForce(m_power * m_direction);
             }           
+        }
+
+        public void Down()
+        {
+            m_isDown = true;
+        }
+        public void Up()
+        {
+            m_isDown = false;
         }
     }
 }

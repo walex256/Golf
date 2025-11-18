@@ -11,12 +11,11 @@ namespace Golf
 
         [SerializeField] StonesSpawner m_stonesSpawner;
 
-        [Min(0.1f)] private float m_time;
+        [Min(0.1f)] private float m_time;        
 
-        [SerializeField] private TMP_Text m_textMeshPro;
+        [SerializeField] private ScoreManager m_ScoreManager;
 
-        private int m_ScoreCount = 0;
-        
+        private int m_ScoreCount = 0;     
 
 
 
@@ -44,7 +43,7 @@ namespace Golf
                 m_time = 0;
             }
 
-            m_textMeshPro.text = "Score:  " + m_ScoreCount;
+            //m_textMeshPro.text = "Score:  " + m_ScoreCount;
         }
 
         private void OnHit(Stone stone)
@@ -53,21 +52,23 @@ namespace Golf
            stone.Missed -= OnMissed;
            Debug.Log("Hit");
 
-            m_ScoreCount++;
-
-            
+            m_ScoreManager.Increase();           
 
         }
 
         private void OnMissed(Stone stone)
         {
-            stone.Hit -= OnHit;
-            stone.Missed -= OnMissed;
+            UnSubscribe(stone);
             m_missedCount--;
             if (m_missedCount < 0)
             {
                 Debug.Log("Game over");
             }
+        }
+        private void UnSubscribe(Stone stone)
+        {
+            stone.Hit -= OnHit;
+            stone.Missed -= OnMissed;
         }
 
         
