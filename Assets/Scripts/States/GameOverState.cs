@@ -1,16 +1,37 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOverState : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private GameObject m_gameOverPanel;
+    [SerializeField] private ScoreManager m_scoreManager;
+    [SerializeField] private Button m_backMainMenu;
+    [SerializeField] private TextMeshProUGUI m_scoreText;
+
+    private GameStateMachine m_gameStateMachine;
+
+
+    public void Init(GameStateMachine gameStateMachine)
     {
-        
+        m_gameStateMachine = gameStateMachine;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter()
     {
-        
+        Debug.Log("Sate");
+        m_scoreText.text = m_scoreManager.score.ToString();
+        m_backMainMenu.onClick.AddListener(OnClicked);
+        m_gameOverPanel.SetActive(true);
+    }
+
+    private void OnClicked()
+    {        
+        m_gameStateMachine.Enter<MainMenuState>();
+    }
+
+    public void Exit()
+    {
+        m_gameOverPanel.SetActive(false);
     }
 }

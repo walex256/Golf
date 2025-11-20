@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 namespace Golf
 {
-    public class _PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [SerializeField] private Stick m_stick;
         private void Update()

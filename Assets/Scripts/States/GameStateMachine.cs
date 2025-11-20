@@ -2,31 +2,43 @@ using UnityEngine;
 
 public class GameStateMachine : MonoBehaviour
 {
-    [SerializeField] private MainMenuState m_MainMenuState;
-
-     [SerializeField] private GamplayState m_GamplayState;
-
-    [SerializeField] private BootstrapState m_BootstrapState;
+    [SerializeField] private MainMenuState m_mainMenuState;
+    [SerializeField] private GamplayState m_gamePlayState;
+    [SerializeField] private BootstrapState m_boorstrapState;
+    [SerializeField] private GameOverState m_gameOverState;
 
     private void Awake()
     {
-        m_MainMenuState.Initialize(this);
-        m_GamplayState.Initialize(this);
-        m_BootstrapState.Initialize(this);
+        m_mainMenuState.Init(this);
+        m_gamePlayState.Init(this);
+        m_boorstrapState.Init(this);
+        m_gameOverState.Init(this);
     }
-    private void Start()
-    {
-        Enter<BootstrapState>();
-    }
+
+    private void Start() => Enter<BootstrapState>();
+
     public void Enter<T>()
     {
-        if (typeof(T) == typeof(GamplayState))
+        if (typeof(T) == typeof(MainMenuState))
         {
-            m_GamplayState.Enter();
+            m_gameOverState.Exit();
+            m_boorstrapState.Exit();
+
+            m_mainMenuState.Enter();
+        }
+        else if (typeof(T) == typeof(GamplayState))
+        {
+            m_mainMenuState.Exit();
+            m_gamePlayState.Enter();
         }
         else if (typeof(T) == typeof(BootstrapState))
         {
-
+            m_boorstrapState.Enter();
+        }
+        else if (typeof(T) == typeof(GameOverState))
+        {
+            m_gamePlayState.Exit();
+            m_gameOverState.Enter();            
         }
     }
 }

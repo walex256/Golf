@@ -5,37 +5,56 @@ using UnityEngine;
 
 public class GamplayState : MonoBehaviour
 {
-    [SerializeField] private _PlayerController m_playerController;
-
-    [SerializeField] private LevelController m_levelController;
-
     [SerializeField] private ScoreManager m_scoreManager;
-
-    [SerializeField] private TextMeshProUGUI m_scoreText;
+    [SerializeField] private PlayerController m_playerController;
+    [SerializeField] private LevelController m_levelController;
+    [SerializeField] private TMP_Text m_scoreText;
 
     private GameStateMachine m_gameStateMachine;
-    public void Initialize(GameStateMachine gameStateMachine)
+
+    public void Init(GameStateMachine gameStateMachine)
     {
-       m_gameStateMachine = gameStateMachine;
+        m_scoreText.gameObject.SetActive(false);
+        m_gameStateMachine = gameStateMachine;
     }
+
     public void Enter()
     {
         m_scoreManager.Reset();
-        m_scoreManager.ScoreChanged += OnScoreChanged();
+        m_scoreManager.ScoreChanged += OnScoreChanged;
 
+        OnScoreChanged(m_scoreManager.score);
+        m_scoreText.gameObject.SetActive(true);
+        
 
-        m_playerController.enabled = true;
         m_levelController.enabled = true;
+        m_playerController.enabled = true;
+
+        m_levelController.Initialize();
+
+       m_levelController.Finished += OnFinished;
+    }
+    
+
+    private void OnFinished()
+    {       
+        m_gameStateMachine.Enter<GameOverState>();
+    }
+         
+
+
+    public void Exit()
+    {
+        m_levelController.enabled = false;
+        m_playerController.enabled = false;
+        m_scoreText.gameObject.SetActive(false);
+
+        m_levelController.Finished -= OnFinished;
     }
 
     private void OnScoreChanged(int score)
     {
-        throw new NotImplementedException();
-    }
-
-    public void Exit()
-    {
-        m_playerController.enabled = false;
-        m_levelController.enabled = false;
+        Debug.Log(score);
+        m_scoreText.text = score.ToString();
     }
 }

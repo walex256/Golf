@@ -1,77 +1,91 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 namespace Golf
 {
     public class LevelController : MonoBehaviour
     {
+        public event Action Finished;
+
+        [Header("Game logic")]
         [SerializeField] private int m_missedCount;
-
-        [SerializeField] [Min (0.1f)] private float m_spawnRate =0.5f;
-
-        [SerializeField] StonesSpawner m_stonesSpawner;
-
-        [Min(0.1f)] private float m_time;        
-
-        [SerializeField] private ScoreManager m_ScoreManager;
-
-        private int m_ScoreCount = 0;     
-
-
-
+        [SerializeField, Min(0.1f)] private float m_spawnRate = 1f;
+        [SerializeField] private StonesSpawner m_stoneSpawner;        
+        [SerializeField] private ScoreManager m_scoreManager;
 
         private int m_currentMissedCount;
+
+        public int Score { get; private set; } = 0;
+
+        private float m_time;
+
+        private List<Stone> m_stones;
+
         private void Awake()
+        {           
+            m_stones = new List<Stone>();
+        }
+
+        public void Initialize()
         {
             m_currentMissedCount = m_missedCount;
         }
-        private void Start()
+
+        private void Update()
         {
-            m_time = m_spawnRate;
+            UpdateSpawnTimer();
         }
-        void Update()
+
+        private void UpdateSpawnTimer()
         {
             m_time += Time.deltaTime;
 
             if (m_time >= m_spawnRate)
             {
-                Stone stone = m_stonesSpawner.Spawn();
+                SpawnStoneWithEvents();
 
-                stone.Hit += OnHit;
-
-                stone.Missed += OnMissed;
                 m_time = 0;
             }
-
-            //m_textMeshPro.text = "Score:  " + m_ScoreCount;
         }
 
-        private void OnHit(Stone stone)
+        private void SpawnStoneWithEvents()
         {
-           stone.Hit -= OnHit;
-           stone.Missed -= OnMissed;
-           Debug.Log("Hit");
+            Stone stone = m_stoneSpawner.Spawn();
 
-            m_ScoreManager.Increase();           
-
+            stone.Hit += OnHitStone;
+            stone.Missed += OnMissedStone;
         }
 
-        private void OnMissed(Stone stone)
+        private void OnMissedStone(Stone stone)
         {
-            UnSubscribe(stone);
-            m_missedCount--;
-            if (m_missedCount < 0)
+            UnsubscribeStone(stone);
+
+            m_currentMissedCount--;
+            if (m_currentMissedCount <= 0)
             {
-                Debug.Log("Game over");
+                Debug.Log("Game Over!");
+                Finished?.Invoke();
+
+                foreach (Stone item in m_stones)
+                {
+                    Destroy(item.gameObject);
+                }
             }
         }
-        private void UnSubscribe(Stone stone)
+
+        private void OnHitStone(Stone stone)
         {
-            stone.Hit -= OnHit;
-            stone.Missed -= OnMissed;
+            UnsubscribeStone(stone);
+            m_scoreManager.Increase();
         }
 
-        
+        private void UnsubscribeStone(Stone stone)
+        {
+            stone.Hit -= OnHitStone;
+            stone.Missed -= OnMissedStone;
+        }
+
     }
 }
 

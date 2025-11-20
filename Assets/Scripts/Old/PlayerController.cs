@@ -1,41 +1,44 @@
 using UnityEngine;
-
-public class PlayerController : MonoBehaviour
+namespace Old
 {
-    [SerializeField] private FreeCamera m_camera;
-    [SerializeField] private GameObject m_window;
-    [SerializeField] private CloudController m_cloud;
-    private WeaponSwitcher[] m_switchers;
-    
-    private void Start()
-    {        
-        m_switchers = FindObjectsOfType<WeaponSwitcher>();
-    }
-
-    private void Update()
+    public class PlayerController : MonoBehaviour
     {
-        if(m_window.activeSelf)
-        {
-            return;
-        }
-        m_camera.Move();
+        [SerializeField] private FreeCamera m_camera;
+        [SerializeField] private GameObject m_window;
+        [SerializeField] private CloudController m_cloud;
+        private WeaponSwitcher[] m_switchers;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        private void Start()
         {
-            m_cloud.MoveNext();
+            m_switchers = FindObjectsOfType<WeaponSwitcher>();
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        private void Update()
         {
-            SwitchAllWeapons();
+            if (m_window.activeSelf)
+            {
+                return;
+            }
+            m_camera.Move();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                m_cloud.MoveNext();
+            }
+
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                SwitchAllWeapons();
+            }
+        }
+
+        private void SwitchAllWeapons()
+        {
+            foreach (var switcher in m_switchers)
+            {
+                switcher?.SwitchWeapon();
+            }
         }
     }
 
-    private void SwitchAllWeapons()
-    {
-        foreach (var switcher in m_switchers)
-        {
-            switcher?.SwitchWeapon();
-        }
-    }
 }
