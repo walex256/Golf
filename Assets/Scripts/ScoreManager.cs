@@ -4,9 +4,23 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public event Action<int> ScoreChanged;
+    public event Action<int> RecordChange;
 
     private int m_score;
-
+    public int record 
+    {  
+        get => PlayerPrefs.GetInt(GlobalConst.Record, 0);
+        private set
+        {
+            var temp = PlayerPrefs.GetInt(GlobalConst.Record, 0);
+            if (temp < value)
+            {
+                PlayerPrefs.SetInt(GlobalConst.Record, score);
+                RecordChange?.Invoke(value);
+            }
+            
+        }
+    }
     public int score
     {
         get => m_score;
@@ -19,7 +33,15 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void Increase() => score++;
-
+    public void UpdateRecord()
+    {
+        var record = PlayerPrefs.GetInt(GlobalConst.Record, 0);
+        if (record < score)
+        {
+            PlayerPrefs.SetInt(GlobalConst.Record, score);
+        }
+        PlayerPrefs.SetInt(GlobalConst.Record, score);
+    }
     public void Reset()
     {
         score = 0;

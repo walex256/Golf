@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameOverState : MonoBehaviour
+public class GameOverState : StateBase
 {
     [SerializeField] private GameObject m_gameOverPanel;
     [SerializeField] private ScoreManager m_scoreManager;
@@ -12,14 +12,14 @@ public class GameOverState : MonoBehaviour
     private GameStateMachine m_gameStateMachine;
 
 
-    public void Init(GameStateMachine gameStateMachine)
+    public override void Init(GameStateMachine gameStateMachine)
     {
         m_gameStateMachine = gameStateMachine;
     }
 
-    public void Enter()
+    public override void Enter()
     {
-        Debug.Log("Sate");
+        m_scoreManager.UpdateRecord();
         m_scoreText.text = m_scoreManager.score.ToString();
         m_backMainMenu.onClick.AddListener(OnClicked);
         m_gameOverPanel.SetActive(true);
@@ -30,7 +30,7 @@ public class GameOverState : MonoBehaviour
         m_gameStateMachine.Enter<MainMenuState>();
     }
 
-    public void Exit()
+    public override void Exit()
     {
         m_gameOverPanel.SetActive(false);
     }

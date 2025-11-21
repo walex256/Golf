@@ -4,15 +4,18 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Stone : MonoBehaviour
 {
+    [Serializable] private StoneData[] m_data;
     public event Action<Stone> Hit;
 
     public event Action<Stone> Missed;
 
     private Rigidbody m_Rigidbody;
+    private StoneData m_currentData;
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+
     }
     private void OnCollisionEnter(Collision collision)
     {
