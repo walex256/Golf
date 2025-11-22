@@ -15,6 +15,8 @@ public class GameOverState : StateBase
     public override void Init(GameStateMachine gameStateMachine)
     {
         m_gameStateMachine = gameStateMachine;
+
+        m_gameOverPanel.SetActive(false);
     }
 
     public override void Enter()

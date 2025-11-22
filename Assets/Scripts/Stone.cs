@@ -4,18 +4,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Stone : MonoBehaviour
 {
-    [Serializable] private StoneData[] m_data;
+    [SerializeField] private StoneData[] m_data;
+
     public event Action<Stone> Hit;
 
     public event Action<Stone> Missed;
 
-    private Rigidbody m_Rigidbody;
-    private StoneData m_currentData;
+    private Rigidbody m_Rigidbody;    
+
+    public int score { get; private set; }
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-
+        score = m_data[UnityEngine.Random.Range (0, m_data.Length)].score;
     }
     private void OnCollisionEnter(Collision collision)
     {
