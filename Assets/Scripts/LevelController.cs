@@ -13,6 +13,7 @@ namespace Golf
         [SerializeField, Min(0.1f)] private float m_spawnRate = 1f;
         [SerializeField] private StonesSpawner m_stoneSpawner;        
         [SerializeField] private ScoreManager m_scoreManager;
+         [SerializeField] private SaundManager m_saundManager;
 
         private int m_currentMissedCount;
 
@@ -60,6 +61,7 @@ namespace Golf
         private void OnMissedStone(Stone stone)
         {
             UnsubscribeStone(stone);
+            m_saundManager.SoundPlay(Sound.stoneFall);
 
             m_currentMissedCount--;
             if (m_currentMissedCount <= 0)
@@ -77,7 +79,7 @@ namespace Golf
         private void OnHitStone(Stone stone)
         {
             UnsubscribeStone(stone);
-            m_scoreManager.Increase();
+            m_scoreManager.Increase(stone.score);
         }
 
         private void UnsubscribeStone(Stone stone)

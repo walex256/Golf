@@ -27,7 +27,7 @@ public class RecordText : MonoBehaviour
     private void OnRecordChanged(int value)
     {
         m_format ??=  string.Empty;
-        m_Text.text = string.Format(m_format, ToString());
+        m_Text.text = string.Format(m_format, value.ToString());
     }
 
     

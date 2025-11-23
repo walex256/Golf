@@ -10,6 +10,7 @@ public class GamplayState : StateBase
     [SerializeField] private LevelController m_levelController;
     [SerializeField] private TMP_Text m_scoreText;
     [SerializeField] private GameObject m_GamePlayPanel;
+    [SerializeField] private SaundManager m_soundManager;
 
     private GameStateMachine m_gameStateMachine;
 

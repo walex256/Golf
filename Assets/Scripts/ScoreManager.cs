@@ -8,11 +8,14 @@ public class ScoreManager : MonoBehaviour
 
     private int m_score;
     public int record 
-    {  
-        get => PlayerPrefs.GetInt(GlobalConst.Record, 100);
-        private set
+    {
+        get
         {
-            //var temp = PlayerPrefs.GetInt(GlobalConst.Record, 0);
+            PlayerPrefs.DeleteKey(GlobalConst.Record);
+            return PlayerPrefs.GetInt(GlobalConst.Record, 100);
+        } 
+        private set
+        {            
             if (record < value)
             {
                 PlayerPrefs.SetInt(GlobalConst.Record, score);
@@ -32,10 +35,12 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void Increase() => score++;
+    public void Increase(int value) => score += value;
     public void UpdateRecord()
     {
+       
         record = score;
+       
     }
     public void Reset()
     {

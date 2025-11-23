@@ -7,6 +7,7 @@ public class MainMenuState : StateBase
 {
     [SerializeField] private GameObject m_mainMenuRoot;
     [SerializeField] private Button m_playButton;
+    [SerializeField] private SaundManager m_soundManager;
 
     private GameStateMachine m_gameStateMachine;
 
@@ -18,6 +19,7 @@ public class MainMenuState : StateBase
 
     public override void Enter()
     {
+        m_soundManager.SoundPlay(Sound.gamePlay);
         m_mainMenuRoot.SetActive(true);
         m_playButton.onClick.AddListener(OnClicked);
     }
@@ -30,6 +32,7 @@ public class MainMenuState : StateBase
 
     private void OnClicked()
     {
+        m_soundManager.SoundPlay(Sound.buttonClick);
         m_gameStateMachine.Enter<GamplayState>();
     }
 }
