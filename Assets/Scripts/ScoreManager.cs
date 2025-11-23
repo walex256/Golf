@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -7,23 +7,23 @@ public class ScoreManager : MonoBehaviour
     public event Action<int> RecordChange;
 
     private int m_score;
-    public int record 
+    private int m_record;
+
+    public int record
     {
-        get
-        {
-            PlayerPrefs.DeleteKey(GlobalConst.Record);
-            return PlayerPrefs.GetInt(GlobalConst.Record, 100);
-        } 
+        get => m_record;
         private set
-        {            
-            if (record < value)
+        {
+            if (value > m_record)
             {
-                PlayerPrefs.SetInt(GlobalConst.Record, score);
+                m_record = value;
+                PlayerPrefs.SetInt(GlobalConst.Record, value);
+                PlayerPrefs.Save(); 
                 RecordChange?.Invoke(value);
             }
-            
         }
     }
+
     public int score
     {
         get => m_score;
@@ -31,17 +31,22 @@ public class ScoreManager : MonoBehaviour
         {
             m_score = value;
             Debug.Log($"Score {value}");
-            ScoreChanged?.Invoke( value );
+            ScoreChanged?.Invoke(value);
         }
     }
 
+    private void Start()
+    {        
+        m_record = PlayerPrefs.GetInt(GlobalConst.Record, 0);        
+    }
+
     public void Increase(int value) => score += value;
+
     public void UpdateRecord()
     {
-       
-        record = score;
-       
+        record = score;         
     }
+
     public void Reset()
     {
         score = 0;

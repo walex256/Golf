@@ -11,6 +11,7 @@ namespace Golf
         [SerializeField] private float m_maxAngelX=-30;
         [SerializeField, Min(0)] private float m_speed;
         [SerializeField] private SaundManager m_soundManager;
+        [SerializeField] private ParticleSystem m_particleSystem;
 
         private Vector3 m_direction;
 
@@ -47,6 +48,7 @@ namespace Golf
             
             if (collision.gameObject.TryGetComponent<Stone>(out var stone))
             {
+                m_particleSystem.Play();
                 m_soundManager.SoundPlay(Sound.stickHit);
                 stone.AddForce(m_power * m_direction);
             }           

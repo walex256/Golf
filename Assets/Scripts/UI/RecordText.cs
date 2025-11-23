@@ -18,7 +18,7 @@ public class RecordText : MonoBehaviour
 
     private void OnEnable()
     {
-        OnRecordChanged(m_scoreManager.score);
+        OnRecordChanged(m_scoreManager.record);
         m_scoreManager.RecordChange += OnRecordChanged;
     }
     private void OnDisable() => m_scoreManager.RecordChange -= OnRecordChanged;
