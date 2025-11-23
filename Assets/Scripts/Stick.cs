@@ -46,7 +46,7 @@ namespace Golf
         private void OnCollisionEnter(Collision collision)
         {
             
-            if (collision.gameObject.TryGetComponent<Stone>(out var stone))
+            if (collision.gameObject.TryGetComponent<HitObject>(out var stone))
             {
                 m_particleSystem.Play();
                 m_soundManager.SoundPlay(Sound.stickHit);

@@ -943,7 +943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 767.1315, y: -29.99997}
+  m_AnchoredPosition: {x: 767.1315, y: -30}
   m_SizeDelta: {x: -1634.2628, y: 104.0517}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &124840137
@@ -1713,7 +1713,13 @@ MonoBehaviour:
   m_prefab:
   - {fileID: 7207846310640476763, guid: f1b252f1d7d477d4c84d4ae7a2268678, type: 3}
   - {fileID: -1260470203952226912, guid: 6c77f6b0e7693b242ae071cd9ca57e92, type: 3}
+  - {fileID: 2557246655914584513, guid: 0b5a348bb3d66cd4fbf07c4d8870e317, type: 3}
+  - {fileID: 4222784917087136432, guid: 6a38f76ff71843a4c972c5079b8c43d8, type: 3}
+  - {fileID: 4742687278882982682, guid: 272bccd7d3ad9ae4d992e9169ed5d1d6, type: 3}
+  - {fileID: 1217211288786551286, guid: 2c73f92b0b9110b41b7bcca20838dbac, type: 3}
+  - {fileID: 4435783278201256723, guid: 9574a074a64225040bf39d5c404a5fec, type: 3}
   m_spawnPoint: {fileID: 201945523}
+  m_spawnRangeY: 0
 --- !u!4 &201945523
 Transform:
   m_ObjectHideFlags: 0
@@ -17240,7 +17246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.LevelController
   m_missedCount: 3
-  m_spawnRate: 2.01
+  m_minSpawnTime: 0.56
+  m_maxSpawnTime: 3
   m_stoneSpawner: {fileID: 201945522}
   m_scoreManager: {fileID: 567689703}
   m_saundManager: {fileID: 704570402}
