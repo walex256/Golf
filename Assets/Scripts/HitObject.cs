@@ -1,10 +1,16 @@
 using Golf;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class HitObject : MonoBehaviour
 {
     [SerializeField] private StoneData[] m_data;
+
+    [SerializeField] private ParticleSystem m_particleSystem;
+
+    private SaundManager m_saundManager;
 
     private ScoreManager m_scoreManager;
 
@@ -24,11 +30,18 @@ public class HitObject : MonoBehaviour
     private void OnEnable()
     {
         m_scoreManager = FindFirstObjectByType<ScoreManager>();
+        m_saundManager = FindFirstObjectByType<SaundManager>();
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Stick>())
-        {
+        {            
+            if (gameObject.layer == 9)
+            {
+                m_particleSystem.Play();
+                m_saundManager.SoundPlay(Sound.boom);               
+                StartCoroutine(DestroyCoroutine());               
+            }
             if (gameObject.layer == 9 && m_scoreManager.score < 15)
             {
                 m_scoreManager.Reset();
@@ -46,5 +59,11 @@ public class HitObject : MonoBehaviour
     {
         m_Rigidbody.AddForce(power, ForceMode.Force);
     }
-
+    
+    private IEnumerator DestroyCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        Destroy(gameObject);
+    }
 }

@@ -4,6 +4,7 @@ public class SaundManager : MonoBehaviour
 {
     [SerializeField] private AudioSource m_audioSource;
     [SerializeField] private AudioSource m_gamePlaySource;
+    [SerializeField] private AudioSource m_boomSource;
 
     // Клипы 
     //[SerializeField] private AudioClip m_mainMenu;
@@ -14,6 +15,7 @@ public class SaundManager : MonoBehaviour
     [SerializeField] private AudioClip m_stickHit;
     [SerializeField] private AudioClip m_buttonClick;
     [SerializeField] private AudioClip[] m_stoneFall;
+    [SerializeField] private AudioClip m_boom; 
 
     public void SoundPlay(Sound type)
     {
@@ -38,6 +40,11 @@ public class SaundManager : MonoBehaviour
                 break;
             case Sound.stoneFall:
                 Play(RandomAudio(m_stoneFall), false);
+                break;
+            case Sound.boom:
+                m_boomSource.clip = m_boom;
+                m_boomSource.loop = false;
+                m_boomSource.Play();
                 break;
         }
     }
@@ -92,5 +99,6 @@ public enum Sound
     gameOver, 
     stickHit, 
     buttonClick,
-    stoneFall
+    stoneFall,
+    boom
 }
