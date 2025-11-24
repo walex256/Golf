@@ -51,7 +51,7 @@ public class HitObject : MonoBehaviour
         }
         else
         {
-            if (gameObject.layer == 9) return; 
+            if (gameObject.layer == 9 && gameObject.layer == 4) return; 
             Missed?.Invoke(this);
         }
     }
@@ -62,7 +62,7 @@ public class HitObject : MonoBehaviour
     
     private IEnumerator DestroyCoroutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.7f);
         
         Destroy(gameObject);
     }

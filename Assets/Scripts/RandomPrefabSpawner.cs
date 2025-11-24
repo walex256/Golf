@@ -4,29 +4,42 @@ using System.Collections.Generic;
 public class RandomPrefabSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] prefabs;
-    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private Transform[] spawnPointsGround;
+    [SerializeField] private Transform[] spawnPointsFly;
     [SerializeField] private Transform parentTransform;
 
-    private List<GameObject> spawnedObjects = new List<GameObject>();
+    private readonly List<GameObject> spawnedObjects = new();
 
     public void SpawnRandom()
     {
-        if (prefabs == null || prefabs.Length == 0 || spawnPoints == null || spawnPoints.Length == 0)
+        if (prefabs == null || prefabs.Length == 0)
         {
-            Debug.LogWarning("Prefabs или spawnPoints не назначены!");
+            Debug.LogWarning("Prefabs не назначены!");
             return;
         }
 
-        GameObject prefabToSpawn = prefabs[Random.Range(0, prefabs.Length)];
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];        
-        GameObject obj = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
-        
-        if (parentTransform != null)
-            obj.transform.SetParent(parentTransform, worldPositionStays: true);
+        GameObject prefab = prefabs[Random.Range(0, prefabs.Length)];
 
-        spawnedObjects.Add(obj);
+        // ----- ЛЕТАЮЩИЙ -----
+        if (prefab.layer == 10)
+        {            
+            Transform point = spawnPointsFly[Random.Range(0, spawnPointsFly.Length)];
 
-        Debug.Log($"Spawned {obj.name} at {spawnPoint.position}");
+            GameObject obj = Instantiate(prefab, point.position, prefab.transform.rotation, parentTransform);
+            spawnedObjects.Add(obj);
+
+            Debug.Log($"FLY Spawned {obj.name} at {point.position}");
+        }
+        // ----- НАЗЕМНЫЙ -----
+        else
+        {            
+            Transform point = spawnPointsGround[Random.Range(0, spawnPointsGround.Length)];
+
+            GameObject obj = Instantiate(prefab, point.position, prefab.transform.rotation, parentTransform);
+            spawnedObjects.Add(obj);
+
+            Debug.Log($"GROUND Spawned {obj.name} at {point.position}");
+        }
     }
 
     public void DestroyAll()
@@ -36,7 +49,8 @@ public class RandomPrefabSpawner : MonoBehaviour
             if (obj != null)
                 Destroy(obj);
         }
+
         spawnedObjects.Clear();
-        Debug.Log("Все объекты уничтожены.");
+        Debug.Log("Все объекты уничтожены");
     }
 }

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910559b0ea430a94eb9d6efc3e004034, type: 3}
   m_Name: SmileData
   m_EditorClassIdentifier: Assembly-CSharp::StoneData
-  m_score: 3
+  m_score: 1
