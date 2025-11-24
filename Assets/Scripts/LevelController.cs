@@ -73,7 +73,7 @@ namespace Golf
             m_currentMissedCount--;
             if (m_currentMissedCount <= 0)
             {
-                Debug.Log("Game Over!");
+                //Debug.Log("Game Over!");
                 Finished?.Invoke();
 
                 foreach (HitObject item in m_stones)

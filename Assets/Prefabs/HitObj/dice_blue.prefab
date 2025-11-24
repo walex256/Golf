@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8951373900742103169}
   - component: {fileID: 6992997389398462780}
   - component: {fileID: 1082426795857805206}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: dice_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 3210527697196749396}
   - component: {fileID: 1217211288786551286}
   - component: {fileID: 6002315296220380199}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: dice_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HitObject
   m_data:
   - {fileID: 11400000, guid: 8d0c3e31d9af24245987e89fb80725e2, type: 2}
+  m_particleSystem: {fileID: 0}
 --- !u!65 &6002315296220380199
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -212,6 +213,10 @@ PrefabInstance:
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
       value: 0.051282056
       objectReference: {fileID: 0}
+    - target: {fileID: 1511977142754914326, guid: df8c89b4db0046948885af0abf29d6a2, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3449184240763786298, guid: df8c89b4db0046948885af0abf29d6a2, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
       value: 0.036410566
@@ -223,6 +228,18 @@ PrefabInstance:
     - target: {fileID: 3875250894213780308, guid: df8c89b4db0046948885af0abf29d6a2, type: 3}
       propertyPath: m_Name
       value: VFX_Trail_Electric
+      objectReference: {fileID: 0}
+    - target: {fileID: 3875250894213780308, guid: df8c89b4db0046948885af0abf29d6a2, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073700778122100528, guid: df8c89b4db0046948885af0abf29d6a2, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5140416320668202908, guid: df8c89b4db0046948885af0abf29d6a2, type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5854759991189625222, guid: df8c89b4db0046948885af0abf29d6a2, type: 3}
       propertyPath: m_LocalPosition.x

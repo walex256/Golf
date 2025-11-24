@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 805257319783893588}
   - component: {fileID: 8912830518690303696}
   - component: {fileID: 2476565754109802640}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: bowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HitObject
   m_data:
   - {fileID: 11400000, guid: 8d0c3e31d9af24245987e89fb80725e2, type: 2}
+  m_particleSystem: {fileID: 0}
 --- !u!136 &2476565754109802640
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -119,7 +120,7 @@ GameObject:
   - component: {fileID: 759468879207805579}
   - component: {fileID: 4312414214749903939}
   - component: {fileID: 699693518869103963}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: bowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}

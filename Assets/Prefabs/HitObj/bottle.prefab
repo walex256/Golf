@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2670908249715561334}
   - component: {fileID: 5867616702864876063}
   - component: {fileID: 4274046698327750063}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HitObject
   m_data:
   - {fileID: 11400000, guid: 77fd44df5aa71c542a9dac4eeb96cde6, type: 2}
+  m_particleSystem: {fileID: 0}
 --- !u!1 &7770373137807948292
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +120,7 @@ GameObject:
   - component: {fileID: 7407303164018797537}
   - component: {fileID: 3327962199793484710}
   - component: {fileID: 1072815005920689422}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

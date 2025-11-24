@@ -10,7 +10,7 @@ namespace Old
 
         private void Start()
         {
-            m_switchers = FindObjectsOfType<WeaponSwitcher>();
+            //m_switchers = FindObjectsOfType<WeaponSwitcher>();
         }
 
         private void Update()

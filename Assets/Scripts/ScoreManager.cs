@@ -30,7 +30,7 @@ public class ScoreManager : MonoBehaviour
         private set
         {
             m_score = value;
-            Debug.Log($"Score {value}");
+            //Debug.Log($"Score {value}");
             ScoreChanged?.Invoke(value);
         }
     }

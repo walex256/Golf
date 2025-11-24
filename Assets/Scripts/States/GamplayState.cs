@@ -11,6 +11,7 @@ public class GamplayState : StateBase
     [SerializeField] private TMP_Text m_scoreText;
     [SerializeField] private GameObject m_GamePlayPanel;
     [SerializeField] private SaundManager m_soundManager;
+     [SerializeField] private RandomPrefabSpawner m_randomPrefabSpawner;
 
     private GameStateMachine m_gameStateMachine;
 
@@ -23,6 +24,7 @@ public class GamplayState : StateBase
 
     public override void Enter()
     {
+        m_randomPrefabSpawner.SpawnRandom();
         m_scoreManager.Reset();
         m_scoreManager.ScoreChanged += OnScoreChanged;
 
@@ -59,7 +61,7 @@ public class GamplayState : StateBase
 
     private void OnScoreChanged(int score)
     {
-        Debug.Log(score);
+        //Debug.Log(score);
         m_scoreText.text = score.ToString();
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7101440624205778163}
   - component: {fileID: 4908763517443644458}
   - component: {fileID: 4435783278201256723}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: smiley
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HitObject
   m_data:
   - {fileID: 11400000, guid: 52794a324ce725442afa04004e483e92, type: 2}
+  m_particleSystem: {fileID: 0}
 --- !u!1 &6968134845747075996
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +119,7 @@ GameObject:
   - component: {fileID: 6670340174641979525}
   - component: {fileID: 4507425020415369498}
   - component: {fileID: 7758488895197117491}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: smiley
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,9 +205,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 61602653416988747}
     m_Modifications:
+    - target: {fileID: 86675935862284223, guid: 68862bcef498b6e44b2b20f03bb2ea49, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1539140381162230686, guid: 68862bcef498b6e44b2b20f03bb2ea49, type: 3}
       propertyPath: m_Name
       value: VFX_Trail_Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539140381162230686, guid: 68862bcef498b6e44b2b20f03bb2ea49, type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3297546577546803849, guid: 68862bcef498b6e44b2b20f03bb2ea49, type: 3}
       propertyPath: m_LocalPosition.x
@@ -247,6 +256,10 @@ PrefabInstance:
     - target: {fileID: 3297546577546803849, guid: 68862bcef498b6e44b2b20f03bb2ea49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854155745534378285, guid: 68862bcef498b6e44b2b20f03bb2ea49, type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -11,6 +11,7 @@ public class GameOverState : StateBase
     [SerializeField] private TextMeshProUGUI m_scoreText;
     [SerializeField] private SaundManager m_soundManager;
     [SerializeField] private StonesSpawner m_spawner;
+    [SerializeField] private RandomPrefabSpawner m_randomPrefabSpawner;
 
     private GameStateMachine m_gameStateMachine;
 
@@ -24,6 +25,7 @@ public class GameOverState : StateBase
 
     public override void Enter()
     {
+        m_randomPrefabSpawner.DestroyAll();
         m_soundManager.SoundStop(Sound.gamePlay);
         m_soundManager.SoundPlay(Sound.gameOver);
         m_scoreManager.UpdateRecord();
